@@ -1,8 +1,9 @@
 package noh.jinil.boot.data
 
+import noh.jinil.boot.entity.ImageEntity
+import noh.jinil.boot.entity.VideoEntity
+
 class MediaData {
-    var thumbUrl: String? = null
-    var url: String? = null
-    var name: String? = null
-    var tags: String? = null
+    var imageList: List<ImageEntity>? = null
+    var videoList: List<VideoEntity>? = null
 }

@@ -1,4 +1,4 @@
-package noh.jinil.boot.data
+package noh.jinil.boot.response
 
 class ResponseData<T> {
     var message: String? = null
@@ -6,11 +6,11 @@ class ResponseData<T> {
     var data: T? = null
 
     companion object {
-        fun <T> create(dataType: T): ResponseData<T> {
+        fun <T> create(dataT: T): ResponseData<T> {
             return ResponseData<T>().apply {
                 code = ResponseCode.RESPONSE_CODE_SUCCESS
                 message = null
-                data = dataType
+                data = dataT
             }
         }
     }
