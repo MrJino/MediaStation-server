@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		kotlinVersion = '1.3.0'
 		springBootVersion = '2.1.0.RELEASE'
+		gradleSshVersion = '2.2.0'
 	}
 	repositories {
 		mavenCentral()
@@ -11,10 +12,11 @@ buildscript {
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
+		classpath("org.hidetake:gradle-ssh-plugin:${gradleSshVersion}")
 	}
 }
 
-apply plugin: 'war'
+//apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
@@ -24,13 +26,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'noh.jinil.boot'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-
-war {
-	baseName = 'mybox'
-	version = ''
-}
 
 compileKotlin {
 	kotlinOptions {
@@ -45,10 +41,10 @@ compileTestKotlin {
 	}
 }
 
+
 repositories {
 	mavenCentral()
 }
-
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
