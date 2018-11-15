@@ -33,6 +33,7 @@ class MediaService {
     }
 
     private fun insertFileIntoSystem(type: MediaType, data: Any?, file: File, countPath: String): Boolean {
+        logger.debug("insertFileIntoSystem() : ${file.name}")
 
         val sourceUri: String?
         val thumbsUri: String?
@@ -53,16 +54,23 @@ class MediaService {
             MediaType.VIDEO -> {
                 metaMap = MovieUtils.readMetaData(file, toolPath)
                 if (metaMap == null) {
+                    logger.error("metaMap is null!!")
                     return false
                 }
                 MovieUtils.extractThumb(file, File(dataPath+thumbsUri), metaMap, THUMBS_WIDTH, dataPath).let { success ->
-                    if (!success) return false
+                    if (!success) {
+                        logger.error("extractThumb is failed!!")
+                        return false
+                    }
                 }
             }
         }
 
         FileUtils.move(file, File(dataPath+sourceUri)).let { success ->
-            if (!success) return false
+            if (!success) {
+                logger.error("file move is failed!!")
+                return false
+            }
         }
 
         val mediaData = data ?: when (type) {

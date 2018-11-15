@@ -6,7 +6,6 @@ import java.util.*
 
 object FileUtils {
     fun getMediaFileList(dirPath: String?): List<File>? {
-        logger.info("getMediaFileList() ->$dirPath")
         if (dirPath == null) {
             return null
         }
@@ -15,9 +14,6 @@ object FileUtils {
             MovieUtils.isMovieFormat(pathname.name)
         }?.run {
             Arrays.sort(this)
-            forEach { file ->
-                logger.debug("->file:${file.name}")
-            }
             return this.toList()
         }
 

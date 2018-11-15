@@ -16,12 +16,11 @@ buildscript {
 	}
 }
 
-//apply plugin: 'war'
+apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
 apply plugin: 'kotlin-jpa'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -29,18 +28,12 @@ group = 'noh.jinil.boot'
 sourceCompatibility = 1.8
 
 compileKotlin {
+	//noinspection GrUnresolvedAccess
 	kotlinOptions {
 		freeCompilerArgs = ["-Xjsr305=strict"]
 		jvmTarget = "1.8"
 	}
 }
-compileTestKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ["-Xjsr305=strict"]
-		jvmTarget = "1.8"
-	}
-}
-
 
 repositories {
 	mavenCentral()
