@@ -69,7 +69,7 @@ object MovieUtils {
         val result = try {
             val command = getFFMPEGPath(toolPath)
             val options = " -i \"${file.path}\""
-            logger.debug("->$command$options")
+            //logger.debug("->$command$options")
             CommandUtils.doProcess(command + options)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -78,7 +78,7 @@ object MovieUtils {
 
         val metaMap = HashMap<String, String>()
         VideoMetadataReader.parseMetadata(result).tagList.forEach { tag ->
-            logger.debug("->tag:$tag")
+            //logger.debug("->tag:$tag")
             when (tag.tagName) {
                 "width" -> metaMap[DBField.KEY_WIDTH] = tag.tagDescription
                 "height" -> metaMap[DBField.KEY_HEIGHT] = tag.tagDescription

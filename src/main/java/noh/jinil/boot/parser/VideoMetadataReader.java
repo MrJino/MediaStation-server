@@ -63,7 +63,7 @@ public class VideoMetadataReader {
 	 * @return Metadata based on key,value pairs
 	 */
 	public static Metadata parseMetadata(String metadataStr) {
-		Logger logger = LoggerFactory.getLogger(MediaApiController.class);
+		Logger logger = LoggerFactory.getLogger(VideoMetadataReader.class);
 		Metadata metaData = new Metadata();
 		
 		if (metadataStr == null)
@@ -74,7 +74,7 @@ public class VideoMetadataReader {
 		BufferedReader reader = new BufferedReader(new StringReader(metadataStr));
 		try {
 			while ((str = reader.readLine()) != null) {
-				logger.debug("->"+str);
+				//logger.debug("->"+str);
 				String convertStr = str.trim().toLowerCase();
 				
 				//  meta type check

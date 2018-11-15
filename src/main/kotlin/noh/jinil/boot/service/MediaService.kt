@@ -22,9 +22,9 @@ class MediaService {
 
     fun scanFiles() {
         val videoCount = FileUtils.findContentsCountViaFolder("$dataPath${getSourcePath(MediaType.VIDEO)}", MAX_FILE_COUNT_IN_FOLDER)
-        logger.info("->current video count:$videoCount")
+        logger.info("--current video count:$videoCount")
 
-        FileUtils.getMediaFileList(scanPath)?.forEach {  file ->
+        FileUtils.getMediaFileList(scanPath)?.forEach { file ->
             if (MovieUtils.isMovieFormat(file.path)) {
                 val path = String.format("%06d/", (videoCount / MAX_FILE_COUNT_IN_FOLDER * MAX_FILE_COUNT_IN_FOLDER))
                 insertFileIntoSystem(MediaType.VIDEO, null, file, path)
