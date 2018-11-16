@@ -6,7 +6,7 @@ pipeline {
         git(url: 'https://github.com/MrJino/MediaStation-server.git', branch: 'master', changelog: true, poll: true)
       }
     }
-    stage('error') {
+    stage('build') {
       steps {
         sh './gradlew build'
       }
