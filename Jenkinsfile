@@ -13,7 +13,7 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        sh 'scp -P 2002 /var/lib/jenkins/workspace/MediaStation-server_develop/build/libs/MediaStation.war for1self@for1self.iptime.org:/volume1/was/'
+        sh 'scp -P 2002 -i /home/gabsikee/.ssh/id_rsa build/libs/MediaStation.war for1self@or1self.iptime.org:/volume1/was/'
       }
     }
   }
