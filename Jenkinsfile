@@ -13,7 +13,8 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        sh 'scp -P 2002 build/libs/MediaStation.war for1self@for1self.iptime.org:/volume1/was/'
+        sh '''scp -P 2002 build/libs/MediaStation.war for1self@for1self.iptime.org:/volume1/was/
+yes'''
       }
     }
   }
