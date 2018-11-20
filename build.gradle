@@ -50,6 +50,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly('com.h2database:h2')
 	runtimeOnly('mysql:mysql-connector-java')
+	runtimeOnly('org.springframework.boot:spring-boot-starter-tomcat')
 	implementation 'io.springfox:springfox-swagger2:2.6.1'
 	implementation 'io.springfox:springfox-swagger-ui:2.6.1'
 }
