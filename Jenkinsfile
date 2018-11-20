@@ -8,8 +8,8 @@ pipeline {
     }
     stage('build') {
       steps {
-        sh './gradlew build'
         sh './gradlew clean'
+        sh './gradlew build'
       }
     }
     stage('deploy') {
