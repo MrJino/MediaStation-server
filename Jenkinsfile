@@ -14,7 +14,12 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        sh 'scp -P 2002 -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_rsa build/libs/MediaStation.jar for1self@for1self.iptime.org:/volume1/was/'
+        sh 'scp -P 2002 -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_rsa build/libs/MediaStation.jar for1self@for1self.iptime.org:/volume1/tomcat/'
+      }
+    }
+    stage('boot') {
+      steps {
+        sh 'ssh -p 2002 -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/id_rsa < SpringBoot.sh'
       }
     }
   }
