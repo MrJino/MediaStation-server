@@ -7,9 +7,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 class MediaStationServerApplication : SpringBootServletInitializer() {
-    override fun configure(builder: SpringApplicationBuilder): SpringApplicationBuilder {
-        return builder.sources(MediaStationServerApplication::class.java)
-    }
+    override fun configure(builder: SpringApplicationBuilder): SpringApplicationBuilder =
+            builder.sources(MediaStationServerApplication::class.java)
 }
 
 fun main(args: Array<String>) {

@@ -20,14 +20,12 @@ import javax.annotation.PostConstruct
 @RequestMapping("/api")
 class MediaApiController {
 
-    @Value("\${static.data.path}")
-    private val staticDataPath: String? = null
+    @Value("\${static.path}")
+    private val staticPath: String? = null
 
-    @Value("\${static.tool.path}")
-    private val staticToolPath: String? = null
-
-    @Value("\${static.scan.path}")
-    private val staticScanPath: String? = null
+    private lateinit var staticDataPath: String
+    private lateinit var staticToolPath: String
+    private lateinit var staticScanPath: String
 
     @Autowired
     private val environment: Environment? = null
@@ -39,8 +37,12 @@ class MediaApiController {
     @PostConstruct
     fun init() {
         environment?.activeProfiles?.forEach {
-            logger.info("!!!Environment:$it")
+            logger.info("!!!Environment---------------------$it")
         }
+
+        staticScanPath = "${staticPath}/scan"
+        staticDataPath = "${staticPath}/data"
+        staticToolPath = "${staticPath}/tool"
 
         mediaService?.run {
             scanPath = staticScanPath
