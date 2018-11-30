@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @EnableSwagger2
 class SwaggerConfig {
     @Bean
+    @Suppress("unused")
     fun api(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
                 .select()

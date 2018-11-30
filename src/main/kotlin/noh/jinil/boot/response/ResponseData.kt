@@ -6,12 +6,20 @@ class ResponseData<T> {
     var data: T? = null
 
     companion object {
-        fun <T> create(dataT: T): ResponseData<T> {
+        private fun <T> create(dataT: T?, resCode: Int?, resMessage: String?): ResponseData<T> {
             return ResponseData<T>().apply {
-                code = ResponseCode.RESPONSE_CODE_SUCCESS
-                message = null
+                code = resCode
+                message = resMessage
                 data = dataT
             }
+        }
+
+        fun <T> createSuccess(dataT: T): ResponseData<T> {
+            return create(dataT, ResponseCode.RESPONSE_CODE_OK, "")
+        }
+
+        fun <T> createFailed(resCode: Int?, resMessage: String?): ResponseData<T> {
+            return create(null, resCode, resMessage)
         }
     }
 }

@@ -4,5 +4,5 @@ import javax.persistence.Entity
 import javax.persistence.Table
 
 @Entity
-@Table(name="IMAGE")
-class ImageEntity : MediaEntity()
+@Table(name = "VIDEO")
+class Video : MediaEntity()

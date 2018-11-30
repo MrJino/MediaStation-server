@@ -24,3 +24,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### private ###
+spring_boot_log*
+mediastation-firebase-adminsdk.json

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import javax.annotation.PostConstruct
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/media")
 class MediaApiController {
 
     @Value("\${static.path}")
@@ -63,7 +63,7 @@ class MediaApiController {
             })
         }
 
-        return ResponseData.create(dataList)
+        return ResponseData.createSuccess(dataList)
     }
 
     @PostMapping("/scan/files")
@@ -78,7 +78,7 @@ class MediaApiController {
 
         mediaService?.scanFiles()
 
-        return ResponseData.create(dataList)
+        return ResponseData.createSuccess(dataList)
     }
 }
 
