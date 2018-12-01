@@ -40,9 +40,9 @@ class MediaApiController {
             logger.info("!!!Environment---------------------$it")
         }
 
-        staticScanPath = "${staticPath}/scan"
-        staticDataPath = "${staticPath}/data"
-        staticToolPath = "${staticPath}/tool"
+        staticScanPath = "$staticPath/scan"
+        staticDataPath = "$staticPath/data"
+        staticToolPath = "$staticPath/tool"
 
         mediaService?.run {
             scanPath = staticScanPath
