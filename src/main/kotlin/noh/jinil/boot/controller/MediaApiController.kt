@@ -36,9 +36,11 @@ class MediaApiController {
     @Suppress("unused")
     @PostConstruct
     fun init() {
+        /*
         environment?.activeProfiles?.forEach {
             logger.info("!!!Environment---------------------$it")
         }
+        */
 
         staticScanPath = "$staticPath/scan"
         staticDataPath = "$staticPath/data"
