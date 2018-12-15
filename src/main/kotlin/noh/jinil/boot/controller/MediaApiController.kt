@@ -62,6 +62,7 @@ class MediaApiController {
         FileUtils.getMediaFileList(staticScanPath)?.forEach { file ->
             dataList.add(ScanFileData().apply {
                 name = file.name
+                uri = "/scan/${file.name}"
             })
         }
 

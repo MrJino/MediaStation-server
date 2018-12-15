@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(web: WebSecurity?) {
-        web?.ignoring()?.antMatchers("/h2/**", "/css/**", "/script/**", "/image/**")
+        web?.ignoring()?.antMatchers("/h2/**", "/css/**", "/script/**", "/image/**", "/scan/**")
     }
 
     override fun configure(http: HttpSecurity) {
