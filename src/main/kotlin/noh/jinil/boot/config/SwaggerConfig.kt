@@ -1,4 +1,4 @@
-package noh.jinil.boot
+package noh.jinil.boot.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

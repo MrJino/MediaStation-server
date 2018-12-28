@@ -1,2 +1,2 @@
 pkill -9 -ef MediaStation
-nohup java -jar MediaStation.jar -Dspring.profiles.active=syn &
+nohup java -jar /volume1/tomcat/bin/MediaStation.jar -Dspring.profiles.active=syn &

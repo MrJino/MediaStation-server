@@ -1,8 +1,8 @@
 package noh.jinil.boot.controller
 
 import noh.jinil.boot.data.MediaData
-import noh.jinil.boot.response.ResponseData
 import noh.jinil.boot.data.ScanFileData
+import noh.jinil.boot.response.ResponseData
 import noh.jinil.boot.service.MediaService
 import noh.jinil.boot.utils.FileUtils
 import org.slf4j.LoggerFactory
@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.env.Environment
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.*
 import javax.annotation.PostConstruct
 
 @Controller
@@ -55,8 +52,9 @@ class MediaApiController {
 
     @GetMapping("/scan/files")
     @ResponseBody
-    fun getScanFiles(): ResponseData<List<ScanFileData>> {
+    fun getScanFiles(@RequestHeader(value = "X-Authorization-Firebase") xAuth: String): ResponseData<List<ScanFileData>> {
         logger.info("getScanFiles()")
+        logger.info("->xAuth:$xAuth")
 
         val dataList = ArrayList<ScanFileData>()
         FileUtils.getMediaFileList(staticScanPath)?.forEach { file ->
