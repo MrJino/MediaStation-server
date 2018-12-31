@@ -11,7 +11,6 @@ import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 
-
 @Component
 class FirebaseAuthProvider : AuthenticationProvider {
 
@@ -33,11 +32,7 @@ class FirebaseAuthProvider : AuthenticationProvider {
         val details = userService?.loadUserByUsername(authenticationToken.name)
                 ?: throw FirebaseUserNotExistsException()
 
-        val logger = LoggerFactory.getLogger(FirebaseAuthProvider::class.java)
-        logger.debug("->username: " + details.username)
-        details.authorities.forEach { authority -> logger.debug("->authority: " + authority.authority) }
-
-        authenticationToken = FirebaseAuthToken(details, authentication.getCredentials(), details.authorities)
+        authenticationToken = FirebaseAuthToken(details, authentication.credentials, details.authorities)
 
         return authenticationToken
     }

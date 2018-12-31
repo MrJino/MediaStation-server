@@ -1,7 +1,7 @@
 package noh.jinil.boot.domain.response
 
 object ResponseCode {
-    const val RESPONSE_CODE_OK = 0
-    const val RESPONSE_CODE_FAILED = -1
-    const val RESPONSE_CODE_UNAUTHORIZED = -1000
+    const val OK = 0L
+    const val FAILED = -1L
+    const val NEED_SIGNUP = 200_4001L
 }

@@ -25,6 +25,9 @@ class UserEntity : UserDetails {
     @Column(name = "EMAIL", nullable = false)
     var email = ""
 
+    @Column(name = "TYPE", nullable = true)
+    var type: String? = null
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     @JvmField var authorities: List<RoleEntity>? = null
 
