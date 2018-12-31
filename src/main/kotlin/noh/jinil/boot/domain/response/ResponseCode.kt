@@ -1,4 +1,4 @@
-package noh.jinil.boot.response
+package noh.jinil.boot.domain.response
 
 object ResponseCode {
     const val RESPONSE_CODE_OK = 0

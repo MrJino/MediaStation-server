@@ -1,8 +1,8 @@
 package noh.jinil.boot.service.impl
 
 import noh.jinil.boot.config.SecurityConfig
-import noh.jinil.boot.domain.model.RoleEntity
-import noh.jinil.boot.domain.model.UserEntity
+import noh.jinil.boot.domain.entity.RoleEntity
+import noh.jinil.boot.domain.entity.UserEntity
 import noh.jinil.boot.domain.repository.RoleRepository
 import noh.jinil.boot.domain.repository.UserRepository
 import noh.jinil.boot.service.UserService

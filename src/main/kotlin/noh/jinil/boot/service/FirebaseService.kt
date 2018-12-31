@@ -13,6 +13,13 @@ class FirebaseService {
         }
         try {
             return FirebaseAuth.getInstance().verifyIdToken(idToken)
+
+            /*
+            HashMap<String, Any>().run {
+                put("admin", true)
+                FirebaseAuth.getInstance().setCustomUserClaims(decodedToken.uid, this)
+            }
+             */
         } catch (e: Exception) {
             throw FirebaseTokenInvalidException(e.message)
         }

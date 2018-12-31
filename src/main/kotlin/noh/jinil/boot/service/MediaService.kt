@@ -1,8 +1,8 @@
 package noh.jinil.boot.service
 
-import noh.jinil.boot.entity.Video
-import noh.jinil.boot.define.DBField
-import noh.jinil.boot.repository.VideoRepository
+import noh.jinil.boot.domain.entity.VideoEntity
+import noh.jinil.boot.domain.define.DBField
+import noh.jinil.boot.domain.repository.VideoRepository
 import noh.jinil.boot.utils.FileUtils
 import noh.jinil.boot.utils.MovieUtils
 import org.slf4j.LoggerFactory
@@ -40,7 +40,7 @@ class MediaService {
         val metaMap: HashMap<String, String>?
 
         when (data) {
-            is Video -> {
+            is VideoEntity -> {
                 sourceUri = data.sourceUri
                 thumbsUri = data.thumbsUri
             }
@@ -74,11 +74,11 @@ class MediaService {
         }
 
         val mediaData = data ?: when (type) {
-            MediaType.VIDEO -> Video()
+            MediaType.VIDEO -> VideoEntity()
         }
 
         when (mediaData) {
-            is Video -> {
+            is VideoEntity -> {
                 mediaData.sourceUri = sourceUri
                 mediaData.thumbsUri = thumbsUri
                 mediaData.width = metaMap[DBField.KEY_WIDTH]?.toInt()

@@ -36,11 +36,11 @@ public class VideoMetadataReader {
      * ->    compatible_brands: qt  
      * ->    creation_time   : 2018-01-13T01:53:29.000000Z
      * ->    com.apple.quicktime.make: Apple
-     * ->    com.apple.quicktime.model: iPhone 6s
+     * ->    com.apple.quicktime.entity: iPhone 6s
      * ->    com.apple.quicktime.software: 11.2.1
      * ->    com.apple.quicktime.creationdate: 2018-01-13T10:53:28+0900
      * ->  Duration: 00:00:04.30, start: 0.000000, bitrate: 13422 kb/s
-     * ->    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 13311 kb/s, 29.98 fps, 29.97 tbr, 600 tbn, 1200 tbc (default)
+     * ->    Stream #0:0(und): VideoEntity: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 13311 kb/s, 29.98 fps, 29.97 tbr, 600 tbn, 1200 tbc (default)
      * ->    Metadata:
      * ->      creation_time   : 2018-01-13T01:53:29.000000Z
      * ->      handler_name    : Core Media Data Handler
@@ -135,10 +135,10 @@ public class VideoMetadataReader {
 			String make = convertStr.substring(convertStr.indexOf(':')+1).trim();
 			metadata.setTag("make", make);
 		}
-		// com.apple.quicktime.model: iPhone 6s
-		else if(convertStr.startsWith("com.apple.quicktime.model")) {
+		// com.apple.quicktime.entity: iPhone 6s
+		else if(convertStr.startsWith("com.apple.quicktime.entity")) {
 			String model = convertStr.substring(convertStr.indexOf(':')+1).trim();
-			metadata.setTag("model", model);
+			metadata.setTag("entity", model);
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package noh.jinil.boot.response
+package noh.jinil.boot.domain.response
 
 class ResponseData<T> {
     var message: String? = null

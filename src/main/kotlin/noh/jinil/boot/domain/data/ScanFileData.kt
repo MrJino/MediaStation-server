@@ -1,4 +1,4 @@
-package noh.jinil.boot.data
+package noh.jinil.boot.domain.data
 
 class ScanFileData {
     var name: String? = null

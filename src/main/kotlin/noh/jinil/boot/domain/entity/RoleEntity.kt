@@ -1,4 +1,4 @@
-package noh.jinil.boot.domain.model
+package noh.jinil.boot.domain.entity
 
 import org.springframework.security.core.GrantedAuthority
 import javax.persistence.*

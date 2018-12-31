@@ -1,12 +1,10 @@
-package noh.jinil.boot.entity
+package noh.jinil.boot.domain.entity
 
 import javax.persistence.Column
-import javax.persistence.Entity
 import javax.persistence.MappedSuperclass
-import javax.persistence.Table
 
 @MappedSuperclass
-abstract class MediaEntity : BaseEntity() {
+abstract class BaseMedia : BaseEntity() {
     @Column(name = "THUMB")
     var thumbsUri: String? = null
 

@@ -1,8 +1,8 @@
-package noh.jinil.boot.entity
+package noh.jinil.boot.domain.entity
 
 import javax.persistence.Entity
 import javax.persistence.Table
 
 @Entity
 @Table(name="IMAGE")
-class Image : MediaEntity()
+class ImageEntity : BaseMedia()

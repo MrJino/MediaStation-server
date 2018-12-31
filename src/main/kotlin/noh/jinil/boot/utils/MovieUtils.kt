@@ -1,6 +1,6 @@
 package noh.jinil.boot.utils
 
-import noh.jinil.boot.define.DBField
+import noh.jinil.boot.domain.define.DBField
 import noh.jinil.boot.parser.VideoMetadataReader
 import java.io.File
 import java.lang.Exception
@@ -84,7 +84,7 @@ object MovieUtils {
                 "height" -> metaMap[DBField.KEY_HEIGHT] = tag.tagDescription
                 "date" -> metaMap[DBField.KEY_SHOOT_DATE] = tag.tagDescription
                 "time" -> metaMap[DBField.KEY_SHOOT_TIME] = tag.tagDescription
-                "model" -> metaMap[DBField.KEY_MODEL] = tag.tagDescription
+                "entity" -> metaMap[DBField.KEY_MODEL] = tag.tagDescription
                 "make" -> metaMap[DBField.KEY_MAKE] = tag.tagDescription
                 "rotate" -> metaMap[DBField.KEY_ORIENTATION] = tag.tagDescription
             }

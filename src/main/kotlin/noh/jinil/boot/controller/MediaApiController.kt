@@ -1,8 +1,8 @@
 package noh.jinil.boot.controller
 
-import noh.jinil.boot.data.MediaData
-import noh.jinil.boot.data.ScanFileData
-import noh.jinil.boot.response.ResponseData
+import noh.jinil.boot.domain.data.MediaData
+import noh.jinil.boot.domain.data.ScanFileData
+import noh.jinil.boot.domain.response.ResponseData
 import noh.jinil.boot.service.MediaService
 import noh.jinil.boot.utils.FileUtils
 import org.slf4j.LoggerFactory
