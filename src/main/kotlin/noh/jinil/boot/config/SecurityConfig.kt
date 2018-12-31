@@ -1,9 +1,9 @@
 package noh.jinil.boot.config
 
-import noh.jinil.boot.firebase.FirebaseAuthenticationProvider
-import noh.jinil.boot.firebase.FirebaseFilter
+import noh.jinil.boot.auth.firebase.FirebaseAuthProvider
+import noh.jinil.boot.auth.firebase.FirebaseRequestFilter
 import noh.jinil.boot.service.FirebaseService
-import noh.jinil.boot.service.UserServiceImpl
+import noh.jinil.boot.service.impl.UserServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.autoconfigure.security.SecurityProperties
@@ -50,11 +50,11 @@ class SecurityConfig {
         private val userService: UserDetailsService? = null
 
         @Autowired
-        private val firebaseProvider: FirebaseAuthenticationProvider? = null
+        private val authProvider: FirebaseAuthProvider? = null
 
         override fun init(auth: AuthenticationManagerBuilder?) {
             auth?.userDetailsService(userService)
-            auth?.authenticationProvider(firebaseProvider)
+            auth?.authenticationProvider(authProvider)
         }
     }
 
@@ -79,7 +79,7 @@ class SecurityConfig {
         @Autowired(required = false)
         private val firebaseService: FirebaseService? = null
 
-        private fun tokenAuthorizationFilter() = FirebaseFilter(firebaseService)
+        private fun tokenAuthorizationFilter() = FirebaseRequestFilter(firebaseService)
 
 //        override fun configure(http: HttpSecurity) {
 //            http.authorizeRequests()

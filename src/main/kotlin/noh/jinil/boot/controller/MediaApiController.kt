@@ -52,9 +52,8 @@ class MediaApiController {
 
     @GetMapping("/scan/files")
     @ResponseBody
-    fun getScanFiles(@RequestHeader(value = "X-Authorization-Firebase") xAuth: String): ResponseData<List<ScanFileData>> {
+    fun getScanFiles(): ResponseData<List<ScanFileData>> {
         logger.info("getScanFiles()")
-        logger.info("->xAuth:$xAuth")
 
         val dataList = ArrayList<ScanFileData>()
         FileUtils.getMediaFileList(staticScanPath)?.forEach { file ->
