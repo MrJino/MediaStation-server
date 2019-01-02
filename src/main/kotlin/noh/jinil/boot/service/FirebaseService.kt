@@ -25,3 +25,5 @@ class FirebaseService {
         }
     }
 }
+
+//private val logger = LoggerFactory.getLogger(FirebaseService::class.java)

@@ -23,10 +23,10 @@ class AuthApiController {
     @PostMapping("/verify")
     @ResponseBody
     fun verifyUser(@RequestBody auth: AuthenticationData): ResponseData<Unit> {
+        logger.info("verifyUser()")
+
         val holder = firebaseService?.parseToken(auth.idToken)
         val details = userService?.loadUserByUsername(holder?.uid)
-
-        logger.info("verifyUser()")
 
         return if (details == null) {
             ResponseData.createExtra(ResponseCode.NEED_SIGNUP, "회원가입이 필요합니다.")

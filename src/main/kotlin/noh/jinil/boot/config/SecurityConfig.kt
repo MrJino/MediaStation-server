@@ -70,6 +70,7 @@ class SecurityConfig {
 
         override fun configure(http: HttpSecurity?) {
             http?.addFilterBefore(tokenAuthorizationFilter(), BasicAuthenticationFilter::class.java)?.authorizeRequests()
+                    ?.antMatchers("/api/auth/**")?.permitAll()
                     ?.antMatchers("/api/**")?.hasRole(Roles.ADMIN)
                     ?.antMatchers("/**")?.denyAll()
                     ?.and()?.csrf()?.disable()
