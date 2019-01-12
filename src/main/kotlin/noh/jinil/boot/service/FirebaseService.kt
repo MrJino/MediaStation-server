@@ -3,6 +3,7 @@ package noh.jinil.boot.service
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseToken
 import noh.jinil.boot.exception.FirebaseTokenInvalidException
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,6 +13,7 @@ class FirebaseService {
             throw IllegalArgumentException("FirebaseTokenBlank")
         }
         try {
+            //logger.debug("parseToken()")
             return FirebaseAuth.getInstance().verifyIdToken(idToken)
 
             /*

@@ -32,9 +32,11 @@ class FirebaseAuthProvider : AuthenticationProvider {
         val details = userService?.loadUserByUsername(authenticationToken.name)
                 ?: throw FirebaseUserNotExistsException()
 
+        logger.debug("authenticate() authorities: ${details.authorities}")
         authenticationToken = FirebaseAuthToken(details, authentication.credentials, details.authorities)
 
         return authenticationToken
     }
-
 }
+
+private val logger = LoggerFactory.getLogger(FirebaseAuthProvider::class.java)

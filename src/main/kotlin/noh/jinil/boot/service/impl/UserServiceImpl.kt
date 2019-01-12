@@ -1,5 +1,6 @@
 package noh.jinil.boot.service.impl
 
+import com.google.firebase.auth.FirebaseToken
 import noh.jinil.boot.config.SecurityConfig
 import noh.jinil.boot.domain.entity.RoleEntity
 import noh.jinil.boot.domain.entity.UserEntity
@@ -7,6 +8,7 @@ import noh.jinil.boot.domain.repository.RoleRepository
 import noh.jinil.boot.domain.repository.UserRepository
 import noh.jinil.boot.service.UserService
 import noh.jinil.boot.service.shared.RegisterUserInit
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.security.access.annotation.Secured
@@ -35,24 +37,6 @@ class UserServiceImpl : UserService {
     fun init() {
         userRepository?.deleteAll()
         roleRepository?.deleteAll()
-
-        if (userRepository?.count() == 0L) {
-            val adminEntity = UserEntity().apply {
-                username = "1iTC5nOXFmeakKyM1NQ7EJr0TmB3"
-                password = "admin"
-                email = "for1self@gmail.com"
-                authorities = getAdminRoles()
-            }
-            userRepository.save(adminEntity)
-
-            val userEntity = UserEntity().apply {
-                username = "aaa"
-                password = "user"
-                email = "gabsikee@gmail.com"
-                authorities = getUserRoles()
-            }
-            userRepository.save(userEntity)
-        }
     }
 
     private fun getAdminRoles(): List<RoleEntity> {
@@ -67,35 +51,47 @@ class UserServiceImpl : UserService {
         return roleRepository?.findByAuthority(authority) ?: RoleEntity(authority)
     }
 
-    @Transactional
-    @Secured(value = [SecurityConfig.Roles.ROLE_ANONYMOUS])
-    override fun registerUser(init: RegisterUserInit): UserEntity {
-        val userLoaded = userRepository?.findByUsername(init.username)
+    //@Transactional
+    //@Secured(value = [SecurityConfig.Roles.ROLE_ANONYMOUS])
+    override fun registerUser(holder: FirebaseToken): UserEntity? {
+        val userEntity = userRepository?.findByUsername(holder.uid)
 
-        return if (userLoaded == null) {
-            val userEntity = UserEntity().apply {
-                username = init.username
-                email = init.email
-                password = UUID.randomUUID().toString()
+        return if (userEntity == null) {
+            logger.info("registerUser() email: ${holder.email}")
+            val data = UserEntity().apply {
+                username = holder.uid
+                password = "password"
+                email = holder.email
+                level = 0
+                name = holder.name
+                type = "firebase"
                 authorities = getUserRoles()
             }
-            userRepository?.save(userEntity)
-            userEntity
+            userRepository?.save(data)
         } else {
-            userLoaded
+            null
         }
+    }
+
+    override fun verifyUser(holder: FirebaseToken): Boolean {
+        logger.info("verifyUser() email: ${holder.email}")
+        logger.debug("result: ${loadUserByUsername(holder.uid) != null}")
+        return (loadUserByUsername(holder.uid) != null)
     }
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String?): UserDetails? {
+        logger.info("loadUserByUsername() id: $username")
         if (username == null) {
             return null
         }
 
         try {
-            val userDetails = userRepository?.findByUsername(username) ?: return null
-            return User(userDetails.username, userDetails.password, userDetails.authorities)
+            val userEntity = userRepository?.findByUsername(username) ?: return null
+            logger.debug("->userEntity: $userEntity")
+            return User(userEntity.username, userEntity.password, userEntity.authorities)
         } catch (e: EmptyResultDataAccessException) {
+            e.printStackTrace()
             return null
         }
 
@@ -107,3 +103,5 @@ class UserServiceImpl : UserService {
 		*/
     }
 }
+
+private val logger = LoggerFactory.getLogger(UserServiceImpl::class.java)

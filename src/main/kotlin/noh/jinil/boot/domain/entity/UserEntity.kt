@@ -25,6 +25,12 @@ class UserEntity : UserDetails {
     @Column(name = "EMAIL", nullable = false)
     var email = ""
 
+    @Column(name = "LEVEL", nullable = false)
+    var level: Int = 0
+
+    @Column(name = "NAME", nullable = true)
+    var name: String? = null
+
     @Column(name = "TYPE", nullable = true)
     var type: String? = null
 

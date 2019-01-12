@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.env.Environment
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import javax.annotation.PostConstruct
@@ -54,6 +56,10 @@ class MediaApiController {
     @ResponseBody
     fun getScanFiles(): ResponseData<List<ScanFileData>> {
         logger.info("getScanFiles()")
+
+        if (SecurityContextHolder.getContext().authentication.principal is UserDetails) {
+
+        }
 
         val dataList = ArrayList<ScanFileData>()
         FileUtils.getMediaFileList(staticScanPath)?.forEach { file ->

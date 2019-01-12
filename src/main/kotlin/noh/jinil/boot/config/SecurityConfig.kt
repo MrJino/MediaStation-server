@@ -26,7 +26,7 @@ class SecurityConfig {
 
     object Roles {
         private const val ANONYMOUS = "ANONYMOUS"
-        private const val USER = "USER"
+        const val USER = "USER"
         const val ADMIN = "ADMIN"
 
         private const val ROLE_ = "ROLE_"
@@ -66,12 +66,13 @@ class SecurityConfig {
         override fun configure(web: WebSecurity?) {
             web?.ignoring()?.antMatchers("/h2/**", "/css/**", "/script/**", "/image/**", "/scan/**")
             web?.ignoring()?.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**")
+            web?.ignoring()?.antMatchers("/api/auth/**")
         }
 
         override fun configure(http: HttpSecurity?) {
             http?.addFilterBefore(tokenAuthorizationFilter(), BasicAuthenticationFilter::class.java)?.authorizeRequests()
-                    ?.antMatchers("/api/auth/**")?.permitAll()
-                    ?.antMatchers("/api/**")?.hasRole(Roles.ADMIN)
+                    ?.antMatchers("/api/admin/**")?.hasRole(Roles.ADMIN)
+                    ?.antMatchers("/api/**")?.hasAnyRole(Roles.ADMIN, Roles.USER)
                     ?.antMatchers("/**")?.denyAll()
                     ?.and()?.csrf()?.disable()
                     ?.anonymous()?.authorities(Roles.ROLE_ANONYMOUS)
