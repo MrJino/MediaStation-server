@@ -7,16 +7,13 @@ import noh.jinil.boot.domain.entity.UserEntity
 import noh.jinil.boot.domain.repository.RoleRepository
 import noh.jinil.boot.domain.repository.UserRepository
 import noh.jinil.boot.service.UserService
-import noh.jinil.boot.service.shared.RegisterUserInit
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
-import org.springframework.security.access.annotation.Secured
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.util.*
 import javax.annotation.PostConstruct
 
